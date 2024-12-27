@@ -7,7 +7,7 @@ import VirtualKeyboard from "./VirtualKeyboard";
 import StatsModal from "./StatsModal";
 import { GameStats, defaultStats, loadStats, saveStats, generateShareText } from "./types";
 
-interface WordleGameProps {}
+type WordleGameProps = Record<string, never>;
 
 const WordleGame: React.FC<WordleGameProps> = () => {
   const [guesses, setGuesses] = useState<string[]>(Array(6).fill(""));
@@ -36,7 +36,7 @@ const WordleGame: React.FC<WordleGameProps> = () => {
       const response = await fetch('/api/words');
       const data = await response.json();
       setTargetWord(data.word);
-    } catch (error) {
+    } catch {
       setMessage('Error al cargar la palabra');
     }
   };

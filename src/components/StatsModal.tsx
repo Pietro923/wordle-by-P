@@ -26,7 +26,7 @@ const StatsModal: React.FC<StatsModalProps> = ({ stats, isOpen, onClose, shareTe
         await navigator.share({
           text: shareText
         });
-      } catch (err) {
+      } catch {
         // Fallback al portapapeles si falla el share nativo
         await navigator.clipboard.writeText(shareText);
         alert('¡Copiado al portapapeles!');
