@@ -12,103 +12,53 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Definimos los metadatos para cada idioma
-const dictionaries = {
-  es: {
-    title: 'Wordle by P - Un juego de palabras diario',
-    description: 'Adivina la palabra oculta en 6 intentos. Un nuevo desafío cada día.',
-    ogImageAlt: 'Wordle by P - Juego de palabras diario',
+export const metadata: Metadata = {
+  title: 'Wordle by P - A daily word game',
+  description: 'Guess the hidden word in 6 tries. A new challenge every day.',
+  icons: {
+    icon: '/favicon.ico',
   },
-  en: {
+  keywords: [
+    'Wordle',
+    'Word game',
+    'Daily puzzle',
+    'Word puzzle',
+    'Brain teaser',
+    'Word guessing',
+    'Free game',
+    'Online game',
+    'Daily word game',
+  ],
+  openGraph: {
+    type: 'website',
+    url: 'https://wordle-by-p.vercel.app/',
     title: 'Wordle by P - A daily word game',
     description: 'Guess the hidden word in 6 tries. A new challenge every day.',
-    ogImageAlt: 'Wordle by P - Daily word game',
-  }
-};
-
-// Función para generar los metadatos según el idioma
-export async function generateMetadata(
-  { params }: { params: { lang: 'es' | 'en' } }
-): Promise<Metadata> {
-  // Obtenemos las traducciones según el idioma
-  const dict = dictionaries[params.lang ?? 'es'];
-
-  // Define keywords para cada idioma
-  const keywords = {
-    es: [
-      'Wordle',
-      'Juego de palabras',
-      'Juego diario',
-      'Puzzle',
-      'Acertijos',
-      'Adivinar palabras',
-      'Juego en español',
-      'Juego gratuito',
-      'Wordle en español',
+    siteName: 'Wordle by P',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Wordle by P - Daily word game',
+      }
     ],
-    en: [
-      'Wordle',
-      'Word game',
-      'Daily puzzle',
-      'Word puzzle',
-      'Brain teaser',
-      'Word guessing',
-      'Free game',
-      'Online game',
-      'Daily word game',
-    ]
-  };
-
-  return {
-    title: dict.title,
-    description: dict.description,
-    keywords: keywords[params.lang],
-    icons: {
-      icon: '/favicon.ico',
-    },
-    
-    openGraph: {
-      type: 'website',
-      url: 'https://wordle-by-p.vercel.app/',
-      title: dict.title,
-      description: dict.description,
-      siteName: dict.title,
-      locale: params.lang,
-      alternateLocale: params.lang === 'es' ? 'en' : 'es',
-      images: [
-        {
-          url: '/og-image.png',
-          width: 1200,
-          height: 630,
-          alt: dict.ogImageAlt,
-        }
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: dict.title,
-      description: dict.description,
-      images: ['/og-image.png'],
-    },
-    // Agregamos alternativas de idioma
-    alternates: {
-      languages: {
-        'es': '/es',
-        'en': '/en',
-      },
-    },
-  };
-}
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Wordle by P - A daily word game',
+    description: 'Guess the hidden word in 6 tries. A new challenge every day.',
+    images: ['/og-image.png'],
+  },
+};
 
 export default function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { lang: 'es' | 'en' };
 }>) {
   return (
-    <html lang={params.lang} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-neutral-900 text-black dark:text-white`}
       >
